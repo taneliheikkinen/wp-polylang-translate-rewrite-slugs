@@ -186,7 +186,7 @@ class Polylang_Translate_Rewrite_Slugs {
 		}
 
 		// Check if the post type is handle.
-		if (isset($this->post_types[$post->post_type])) {
+		if (isset($this->post_types[$post->post_type]) && !in_array($post->post_status, ['auto-draft', 'draft'])) {
 			// Build URL. Lang prefix is already handle.
 			return trim(home_url( '/' . $this->post_types[$post->post_type]->translated_slugs[$lang]->rewrite['slug'] . '/' . ($leavename ? "%$post->post_type%" : get_page_uri( $post->ID ) ) ), '/').'/';
 		}
